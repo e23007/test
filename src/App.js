@@ -1,5 +1,11 @@
+import Calendar from './calendar'
+
 const App = () => {
-  return <></>
+  return (
+    <>
+      <Calendar />
+    </>
+  )
 }
 
 export default App
