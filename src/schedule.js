@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Button, Container, Box } from '@chakra-ui/react'
 
 let maxId = 0
 
@@ -56,39 +57,60 @@ export const Schedule = () => {
     setDesc(d => !d)
     setList(sorted)
   }
+  // useEffect(()=>{
+  //     const getList=localStorage.saveKey()
+  //     setList([...getList])
+  // },[])
   return (
-    <div>
+    <Container centerContent p={{ base: '4', md: '6' }} maxWidth='3xl'>
       <p>{Message}</p>
-      <label>
-        やること：
-        <input
+      <Box>
+        <textarea
+          onChange={handleChangeTitle}
           type='text'
           name='title'
           value={title}
-          onChange={handleChangeTitle}
+          placeholder='予定'
+          bgColor='white'
+          mt='8'
+          borderColor='gray.400'
         />
-      </label>
-      <button type='button' onClick={handleClick}>
-        追加
-      </button>
-      <button type='button' onClick={handleSort}>
-        ソート({desc ? '↑' : '↓'})
-      </button>
+        {/* <Stack direction='row' spacing={4} align='center'> */}
+        <Button onClick={handleClick} colorScheme='teal' variant='ghost'>
+          追加
+        </Button>
+        <Button onClick={handleSort} colorScheme='teal' variant='ghost'>
+          ソート({desc ? '↑' : '↓'})
+        </Button>
+        {/* </Stack> */}
+      </Box>
       <hr />
       <ul>
         {list.map(item => (
           <li key={item.id} className={item.isDone ? 'done' : ''}>
             {item.title}
-            <button type='button' onClick={handleDone} data-id={item.id}>
+            <Button
+              onClick={handleDone}
+              data-id={item.id}
+              colorScheme='teal'
+              variant='ghost'
+              type='button'
+            >
               済
-            </button>
-            <button type='button' onClick={handleRemove} data-id={item.id}>
+            </Button>
+            <Button
+              onClick={handleRemove}
+              data-id={item.id}
+              colorScheme='teal'
+              variant='ghost'
+              type='button'
+            >
               削除
-            </button>
+            </Button>
           </li>
         ))}
       </ul>
-    </div>
+    </Container>
   )
 }
 export default Schedule
