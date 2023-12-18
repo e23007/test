@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const todoDataUrl = 'http://localhost:3100/todos'
+const todoDataUrl = 'http://localhost:3000/todos'
 // CRUD: create Read Update Delete
 
 // Read
