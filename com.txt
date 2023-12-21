@@ -1,5 +1,13 @@
 import { useState, useEffect } from 'react'
-import { Button, Container, Box, Text,ListItem,UnorderedList } from '@chakra-ui/react'
+import {
+  Button,
+  Container,
+  Box,
+  ListItem,
+  UnorderedList,
+  Divider,
+  VStack
+} from '@chakra-ui/react'
 import { ulid } from 'ulid'
 
 const Schedule = () => {
@@ -98,32 +106,35 @@ const Schedule = () => {
           保存
         </Button>
       </Box>
-      <hr />
-      <ul>
-        {list.map(item => (
-          <li key={item.id} className={item.isDone ? 'done' : ''}>
-            <Text as={item.isDone ? 's' : 'samp'}>{item.title}</Text>
-            <Button
-              onClick={handleDone}
-              data-id={item.id}
-              colorScheme='teal'
-              variant='ghost'
-              type='button'
-            >
-              済
-            </Button>
-            <Button
-              onClick={handleRemove}
-              data-id={item.id}
-              colorScheme='teal'
-              variant='ghost'
-              type='button'
-            >
-              削除
-            </Button>
-          </li>
-        ))}
-      </ul>
+      <Divider />
+
+      <UnorderedList>
+        <VStack>
+          {list.map(item => (
+            <ListItem key={item.id} as={item.isDone ? 's' : 'samp'}>
+              {item.title}
+              <Button
+                onClick={handleDone}
+                data-id={item.id}
+                colorScheme='teal'
+                variant='ghost'
+                type='button'
+              >
+                済
+              </Button>
+              <Button
+                onClick={handleRemove}
+                data-id={item.id}
+                colorScheme='teal'
+                variant='ghost'
+                type='button'
+              >
+                削除
+              </Button>
+            </ListItem>
+          ))}
+        </VStack>
+      </UnorderedList>
     </Container>
   )
 }
